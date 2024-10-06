@@ -2,11 +2,13 @@ package com.prueba.inditex.prices.domain.model;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 
 @Getter
 @Builder
+@ToString
 public class Price {
 
     private Long brandId;

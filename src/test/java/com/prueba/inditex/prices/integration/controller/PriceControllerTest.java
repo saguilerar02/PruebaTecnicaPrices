@@ -1,13 +1,8 @@
 package com.prueba.inditex.prices.integration.controller;
 
 import com.prueba.inditex.prices.PricesApplication;
-import com.prueba.inditex.prices.application.services.PriceService;
-import com.prueba.inditex.prices.infraestructure.mapper.PriceToPriceResponseDtoMapper;
-import com.prueba.inditex.prices.infraestructure.controllers.PriceController;
 import com.prueba.inditex.prices.infraestructure.repositories.JpaPriceRepository;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -19,8 +14,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.time.format.DateTimeFormatter;
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -30,22 +23,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 @ActiveProfiles("test")
-@ContextConfiguration(classes = {JpaPriceRepository.class})// Enfocado en pruebas de controladores
+@ContextConfiguration(classes = {JpaPriceRepository.class})
 @ComponentScan(basePackages = "com.pruebas.inditex.prices")
 public class PriceControllerTest {
 
+    //Prueba End To End
     @Autowired
-    private MockMvc mockMvc;  // Simula peticiones HTTP
-
-    @Mock
-    private PriceService priceServiceImpl;  // Mockeamos el servicio
-    @Mock
-    private PriceToPriceResponseDtoMapper dtoAdapter;
-
-    @InjectMocks
-    private PriceController priceController;  // Inyectamos el controlador
-
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    private MockMvc mockMvc;
 
     // Test 1: Petición a las 10:00 del día 14 de junio del producto 35455 para la marca 1 (ZARA)
     @Test
